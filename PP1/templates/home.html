@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<body>
+   
+    <label for="review">Enter your Review on Movie</label>
+    <input id="review" type="text" >
+    <button onclick="sumbit()">Submit</button>
+    <br>
+    <h1 id="response"></h1>
+    
+</body>
+<script>
+    async function sumbit(){
+        var review=document.getElementById('review').value;
+        var response=document.getElementById('response');
+
+        var url='http://127.0.0.1:8000/'+review;
+        var http=new XMLHttpRequest();
+        await http.open('GET',url,true);
+        http.onreadystatechange=function(){
+            console.log(http.responseText);
+            response.textContent=http.responseText;
+        }
+        http.send();
+    }
+
+</script>
+</html>
